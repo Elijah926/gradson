@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visionnage Double - Gradson LDO</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      margin: 0;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    video {
+      width: 100%;
+      max-width: 800px;
+      margin-top: 1rem;
+      border-radius: 8px;
+    }
+    button {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      margin: 1.5rem 0;
+      background-color: #e62117;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #c3130c;
+    }
+    iframe {
+      display: none;
+    }
+    a {
+      color: #4fc3f7;
+      text-decoration: none;
+    }
+    .info {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+    .share-button {
+      background-color: #1da1f2;
+      margin-top: 1rem;
+    }
+    .share-button:hover {
+      background-color: #0d8ae0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎬 Regarde & Soutiens la Chaîne</h1>
+  <p>En cliquant, tu lances la vidéo ici + la version YouTube en muet pour booster la chaîne</p>
+
+  <button onclick="lancerVideos()">▶️ Lancer les vidéos</button>
+
+  <video controls id="mainVideo">
+    <source src="https://pixeldrain.com/u/tNcZqPJy" type="video/mp4">
+    Ton navigateur ne supporte pas la vidéo.
+  </video>
+
+  <p class="info">
+    🙏 Merci pour ton soutien ! Abonne-toi ici :
+    <a href="https://www.youtube.com/@gradsonldofficiel6454?sub_confirmation=1" target="_blank">
+      @gradsonldofficiel6454
+    </a>
+  </p>
+
+  <button class="share-button" onclick="partager()">📤 Partager cette page</button>
+
+  <iframe id="youtube" allow="autoplay" src=""></iframe>
+
+  <script>
+    function lancerVideos() {
+      document.getElementById('youtube').src = "https://www.youtube.com/embed/K1uoXr85YJs?autoplay=1&mute=1";
+      document.getElementById('mainVideo').play();
+      window.open("https://www.youtube.com/@gradsonldofficiel6454?sub_confirmation=1", "_blank");
+    }
+
+    function partager() {
+      const lien = window.location.href;
+      const texte = "Viens regarder cette vidéo 🔥 : " + lien;
+
+      if (navigator.share) {
+        navigator.share({
+          title: "Regarde & Soutiens 🎥",
+          text: texte,
+          url: lien
+        });
+      } else {
+        navigator.clipboard.writeText(lien).then(() => {
+          alert("Lien copié ✅ Tu peux le partager !");
+        });
+      }
+    }
+  </script>
+</body>
+</html>
